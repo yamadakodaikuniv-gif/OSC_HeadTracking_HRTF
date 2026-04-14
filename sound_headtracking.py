@@ -13,7 +13,9 @@ sofa_azimuths = sourcePositions[:, 0]
 sofa_elevations = sourcePositions[:, 1]
 hrir_all = sofa.getDataIR()
 
+#音源
 source_audio, fs = sf.read("white_noise_10s_ref_70dB.wav")
+
 sofa_fs = sofa.getVariableValue('Data.SamplingRate')[0]
 print(f"音源のサンプリング周波数:{fs}Hz | SOFAのサンプリング周波数:{sofa_fs}Hz")
 
@@ -48,6 +50,7 @@ def sensor_data(address, *args):
         head_az = angles_z - offset_z
         head_el = angles_x
 
+        #仮想音源の球面座標
         fixed_source_az = 0.0
         fixed_source_el = 0.0
 
